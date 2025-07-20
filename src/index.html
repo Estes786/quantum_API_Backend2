@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Quantum AI Frontend</title>
+    <style>
+      /* Ini hanya untuk membuat tampilannya bagus */
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        font-family: sans-serif;
+        background-color: #f0f2f5;
+      }
+      .card {
+        text-align: center;
+        padding: 40px;
+        border-radius: 12px;
+        background-color: white;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      }
+      .message-box {
+        background-color: #f9fafb;
+        padding: 20px;
+        border-radius: 8px;
+        margin-top: 20px;
+        border: 1px solid #e5e7eb;
+        font-family: monospace;
+        font-size: 1.2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h1>Quantum Flask API</h1>
+      <p>Your Hybrid-Quantum AI Backend is Live</p>
+
+      <!-- Pesan dari server akan muncul di sini -->
+      <div id="backend-message" class="message-box">
+        Menghubungi server kuantum...
+      </div>
+    </div>
+
+    <script>
+      // Ini adalah "otak" halaman web kita
+      document.addEventListener("DOMContentLoaded", function () {
+        // GANTI URL DI BAWAH INI DENGAN URL VERCEL ANDA
+        const backendUrl = "https://quantum-api-backend.vercel.app/api/main";
+
+        fetch(backendUrl)
+          .then((response) => response.text())
+          .then((data) => {
+            // Temukan kotak pesan dan ganti isinya dengan data dari server
+            document.getElementById("backend-message").innerText = data;
+          })
+          .catch((error) => {
+            console.error("Error fetching data:", error);
+            document.getElementById("backend-message").innerText =
+              "Gagal terhubung ke backend.";
+          });
+      });
+    </script>
+  </body>
+</html>
